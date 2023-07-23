@@ -37,6 +37,7 @@ namespace MeshMaker
         protected MeshWriter(Stream stream, LoadResult loadedObj)
         {
             Writer = new StreamWriter(stream);
+            Writer.AutoFlush = true;
 
             MeshTriangulator.Triangulate(loadedObj, out MeshVertices, out MeshFaces);
         }
@@ -49,7 +50,6 @@ namespace MeshMaker
         public virtual void Write()
         {
             Writer.WriteLine(VersionString);
-            Writer.Flush();
         }
     }
 
